@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { GitService } from './git/git.service';
 
 @Component({
   selector: 'app-root',
