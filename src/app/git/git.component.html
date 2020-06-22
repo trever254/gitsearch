@@ -1,1 +1,43 @@
-<p>git works!</p>
+<body>
+    <div class="container mt-4">
+      <form>
+        <div class="form-group">
+    
+          <input type="text" class="form-control" name="name" id="gitSearch" aria-describedby="emailHelp" placeholder="User-name" [(ngModel)]="username"(keyup)="searchUser()" >
+          <small id="emailHelp" class="form-text text-muted">Enter your search here.</small>
+        </div>
+      </form>
+    </div>
+    <!--Users-->
+    <div class="container mt-5" *ngIf="users">
+      <div class="card card-default  p-4">
+        <div class="card-heading">
+          <h3 class="card-title mr-3">{{users.name}}</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <p><strong>Profile Picture</strong></p>
+              <img class="img-thumbnail github-avatar" src="{{users.avatar_url}}">
+            </div>
+            <div class="col-md-8">
+              <div class="stats">
+                <span class="badge badge-secondary">{{users.public_repos}} Public Repos</span>
+                <span class="badge badge-primary">{{users.public_gists}} Public Gists</span>
+                <span class="badge badge-success">{{users.followers}} Followers</span>
+                <span class="badge badge-info">{{users.following}} Following</span>
+              </div>
+              <br>
+              <ul class="list-group">
+                <li class="list-group-item"><strong>usersname: </strong>{{users.login}}</li>
+                <li class="list-group-item"><strong>Location: </strong>{{users.location}}</li>
+                <li class="list-group-item"><strong>Email: </strong>{{users.email}}</li>
+                <li class="list-group-item"><strong>Blog: </strong>{{users.blog}}</li>
+                <li class="list-group-item"><strong>Member Since: </strong>{{users.created_at|date}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </body>
