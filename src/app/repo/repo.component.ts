@@ -9,35 +9,38 @@ export class RepoComponent implements OnInit {
   users: any = [];
   repos: any = [];
   username: string;
+  gitProfile: any;
+  gitRepos: any;
+  updateUser: any;
 
-  constructor(Private gitService: GitService) { }
+  constructor(Private : GitService) { }
 
   ngOnInit(): void {
-    this.gitService.gitProfile()
-      .subscribe(res => {
+    this.gitProfile()
+      .subscribe((res: any) => {
         //console.log(res)
         this.users = res;
       })
 
-    this.gitService.gitRepos()
-      .subscribe(data => {
+    this.gitRepos()
+      .subscribe((data: any) => {
         //console.log(data)
         this.repos = data;
       })
   }
   searchUser() {
-    this.gitService.updateUser(this.username);
+    this.updateUser(this.username);
 
-    this.gitService.gitProfile()
-      .subscribe(res => {
+    this.gitProfile()
+      .subscribe((res: any) => {
         //console.log(res)
         this.users = res;
       })
 
-    this.gitService.gitRepos()
-      .subscribe(data => {
+    this.gitRepos()
+      .subscribe((data: any) => {
         //console.log(data)
-        this.repos = data;
+        this.repos = data;    
       })
   }
 
