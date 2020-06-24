@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -33,7 +32,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgProgressModule.forRoot(),
+    NgProgressModule,
     NgProgressHttpClientModule
   ],
   providers: [GitService],
