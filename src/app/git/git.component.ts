@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GitService } from '../git/git.service';
+import{NgProgressHttpClientModule} from '@ngx-progressbar/http-client';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-git',
@@ -11,35 +13,55 @@ export class GitComponent implements OnInit {
   repos: any=[];
   username: string;
 
-  constructor(private gitService: GitService) { }
+  constructor(private gitService: GitService) { 
+    this.gitService.getGitInfo().subscribe(users =>{
+      console.log(users);
+      this.users = users;
+    });
+    this.gitService.getGitRepos().subscribe(repos =>{
+      console.log(repos);
+      this.repos = repos;
+    });
+  }
+  findGit(){
+    this.gitService.updateGit(this.username);
+    this.gitService.getGitInfo().subscribe(users =>{
+      console.log(users);
+      this.users=users
+    });
+    this.gitService.getGitRepos().subscribe(repos =>{
+      console.log(repos);
+      this.repos = repos;
+    });
+  }
 
   ngOnInit() {
-    this.gitService.gitProfile()
-      .subscribe(res => {
+    this.gitService.getGitInfo()
+      .subscribe(users => {
         //console.log(res)
-        this.users = res;
+        this.users = users;
       })
 
-    this.gitService.gitRepos()
-      .subscribe(data => {
+    this.gitService.getGitRepos()
+      .subscribe(repos => {
         //console.log(data)
-        this.repos = data;
+        this.repos = repos;
       })
   }
 
   searchUser() {
-    this.gitService.updateUser(this.username);
+    this.gitService.updateGit(this.username);
 
-    this.gitService.gitProfile()
-      .subscribe(res => {
+    this.gitService.getGitInfo()
+      .subscribe(users=> {
         //console.log(res)
-        this.users = res;
+        this.users = users;
       })
 
-    this.gitService.gitRepos()
-      .subscribe(data => {
+    this.gitService.getGitRepos()
+      .subscribe(repos => {
         //console.log(data)
-        this.repos = data;
+        this.repos = repos;
       })
   }
 

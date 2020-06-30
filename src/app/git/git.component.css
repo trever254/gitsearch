@@ -1,5 +1,6 @@
 body{
-    background-color: aqua;
+    background-color: rgb(60, 65, 65);
+    font-family: 'Courier New', Courier, monospace;
 }
 img{
     width:205px ;

@@ -6,24 +6,27 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class GitService {
-  private username: string;
+  private usersname: string;
   private apiUrl: string = "https://api.github.com/users/";
   private apiKey: string = environment.accessToken;
+  private clientid = 'c2f3fa7846961a1dd9e2'
+  private clientsecret = 'a061c133800fb9d1120fc61c0e092a44e59a32d2'
 
+  constructor(private http: HttpClient) {
+    console.log("GitService Ready");
+    this.usersname = "trever254"
+   }
    //Git profiles
-   gitProfile(){
-    return this.http.get(this.apiUrl + this.username + "?access_token=" + this.apiKey)
+   getGitInfo(){
+    return this.http.get("https://api.github.com/users/" + this.usersname + "?client_id" + this.clientid + "&client_secret" + this.clientsecret + "?access_token=" + this.apiKey)
   }
 
   //Git Repos
-  gitRepos() {
-    return this.http.get(this.apiUrl + this.username + "/repos" + "?access_token=" + this.apiKey)
+  getGitRepos() {
+    return this.http.get("https://api.github.com/users/" + this.usersname + "/repos?client_id" + this.clientid + "&client_secret" + this.clientsecret + "/repos" + "?access_token=" + this.apiKey)
   }
-  constructor(private http: HttpClient) {
-    console.log("GitService Ready");
-    this.username = "trever254"
+
+   updateGit(usersname: string) {
+    this.usersname = usersname;
    }
-   updateUser(username: string) {
-    this.username = username;
   }
-}
