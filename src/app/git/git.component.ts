@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GitService } from '../git/git.service';
-import{NgProgressHttpClientModule} from '@ngx-progressbar/http-client';
 import {Router} from '@angular/router';
 
 @Component({
